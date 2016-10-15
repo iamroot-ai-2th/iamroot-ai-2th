@@ -1,3 +1,7 @@
-#Project Pages
+# IAMROOT 인공지능 스터디 2차
 
-Project Pages is Jekyll Template specifically geared towards collaborative science. For more information, click [here](https://github.com/projectpages/project-pages/wiki/).
+IAMROOT 인공지능 스터디 2차 프로젝트 페이지입니다.
+
+현재 진행중인 작업은
+[위키](https://github.com/iamroot-ai-2th/iamroot-ai-2th.github.io/wiki)에서
+확인하세요.

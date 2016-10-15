@@ -1,9 +1,9 @@
 ---
 layout: page
-title: "About"
-description: "Why use Project Pages?"
+title: "소개"
+description: "스터디 소개"
 header-img: "img/home-bg.jpg"
 ---
 
-Project Pages is a research blog tool that allows you to quickly show your latest results to an advisor, collaborators or your mom.
+IAMROOT.org 인공지능 스터디 2차 모임 작업물 공유 사이트입니다.
 	

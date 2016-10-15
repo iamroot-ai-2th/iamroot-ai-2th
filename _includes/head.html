@@ -4,15 +4,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ site.description }}">
-	{% include ogmeta.html %}
-	
-	{% if site.altmetric == true %}
-
-	{% include altmetric.html %}
-
-	{% endif %}
-
-	<link rel='shortcut icon' type='image/png' href='{{ site.baseurl }}/favicon.png' />
+{% include ogmeta.html %}
+{% if site.altmetric == true %}{% include altmetric.html %}{% endif %}
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="{{ site.baseurl }}/img/favicon/brain-144-192626.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ site.baseurl }}/img/favicon/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="{{ site.baseurl }}/img/favicon/favicon.ico">
+    <link rel="icon" href="{{ site.baseurl }}/img/favicon/brain-32-192626.png" sizes="32x32">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ site.baseurl }}/img/favicon/brain-152-192626.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site.baseurl }}/img/favicon/brain-144-192626.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{ site.baseurl }}/img/favicon/brain-120-192626.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ site.baseurl }}/img/favicon/brain-114-192626.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ site.baseurl }}/img/favicon/brain-72-192626.png">
+    <link rel="apple-touch-icon-precomposed" href="{{ site.baseurl }}/img/favicon/brain-57-192626.png">
 
     <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
 
@@ -64,7 +68,6 @@
 
 	<!-- Custom Theme JavaScript -->
 	<script src="{{ "/js/clean-blog.min.js " | prepend: site.baseurl | prepend: site.url }}"></script>
-	
+
 	{% include analytics.html %}
-	
 </head>
