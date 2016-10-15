@@ -1,80 +1,70 @@
 ---
 layout: post
-title: The 9 Deep Learning Papers You Need To Know About (Understanding CNNs Part 3)
-author: 번역자
+title: 꼭 알아야 할 딥러닝 논문 9가지 (CNN 이해하기 3부)
+author: 허정주
 tags: translate-blog adeshpande3
-subtitle: 요약
+subtitle: 딥러닝 논문 소개
 category: translate-blog
 ---
 
 원문: [바로가기](https://adeshpande3.github.io/The-9-Deep-Learning-Papers-You-Need-To-Know-About.html)
 
-![Cover](/assets/Cover3rd.png)
+![표지](/assets/Cover3rd.png)
 
-## Introduction
+## 소개
 
-[Link to Part 1](http://bit.ly/29U99Ty)
+[1부](https://iamroot-ai-2th.github.io/translate-blog/2016/07/20/A-Beginner's-Guide-To-Understanding-Convolutional-Neural-Networks/)
 
-[Link to Part 2](http://bit.ly/2aARG7f)
+[2부](https://iamroot-ai-2th.github.io/translate-blog/2016/07/29/A-Beginner's-Guide-To-Understanding-Convolutional-Neural-Networks-Part-2/)
 
-In this post, we'll go into summarizing a lot of the new and important
-developments in the field of computer vision and convolutional neural networks.
-We'll look at some of the most important papers that have been published over
-the last 5 years and discuss why they're so important. The first half of the
-list (AlexNet to ResNet) deals with advancements in general network
-architecture, while the second half is just a collection of interesting papers
-in other subareas.
+이 글에서 우리는 컴퓨터 비전과 콘볼루션 신경망 분야에서 많은 새롭고 중요한
+발전을 요약할 것 입니다. 지난 5년동안 출판된 매우 중요한 논문 몇개를 보고 왜
+그것이 중요한지 논할 것 입니다. AlexNet 부터 ResNet 까지 목록의 처음 절반은
+일반적인 망 구조의 발전을 다루고, 나머지 절반은 다른 하위 영역의 흥미로운 논문의
+모음입니다.
 
 ## [AlexNet](https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf) (2012)
 
-The one that started it all (Though some may say that Yann LeCun's
-[Paper](http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf) in 1998 was the
-real pioneering publication). This paper, titled "ImageNet Classification with
-Deep Convolutional Networks", has been cited a total of 6,184 times and is
-widely regarded as one of the most influential publications in the field.
-Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton created a "large, deep
-convolutional neural network" that was used to win the 2012 ILSVRC (ImageNet
-Large-Scale Visual Recognition Challenge). For those that aren't familiar, this
-competition can be thought of as the annual Olympics of computer vision, where
-teams from across the world compete to see who has the best computer vision
-model for tasks such as classification, localization, detection, and more. 2012
-marked the first year where a CNN was used to achieve a top 5 test error rate of
-15.4% (Top 5 error is the rate at which, given an image, the model does not
-output the correct label with its top 5 predictions). The next best entry
-achieved an error of 26.2%, which was an astounding improvement that pretty much
-shocked the computer vision community. Safe to say, CNNs became household names
-in the competition from then on out.
+모든 시작은 하나입니다 (일부는 Yann LeCun 의 1998년
+[논문](http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf)이 선구적인
+출판이라고 말할 것 입니다). "ImageNet Classification with Deep Convolutional
+Network" 라는 제목의 논문은 총 6,184 회 인용되고 이 분야에서 가장 영향력있는
+출판물이라고 간주됩니다. 익숙하지 않은 사람을 위해 설명하자면 이 대회는 컴퓨터
+비젼의 연간 올림픽이라고 간주할 수 있습니다. 누가 분류, 지역화, 탐지 등의 작업을
+위한 더 좋은 컴퓨터 비젼 모델을 가지고 있는지 전세계 팀들이 경쟁하는 것을 볼 수
+있는 곳입니다. 2012 는 15.4%의 상위 5가지 테스트 오류율을 달성하기 위해 CNN 이
+사용된 첫해로 기록됩니다 (상위 5가지 오류는 모델이 주어진 이미지에 대해 예측한
+것이 상위 5가지를 예측한 올바른 라벨과 맞지않는 확률입니다). 다음 최고 항목은
+26.2% 의 오류를 달성했습니다. 이는 컴퓨터 비전 커뮤니티를 매우 놀라게 하는
+충격적인 개선이었습니다. 그때부터 CNN 은 경쟁에서 누구나 아는 이름이
+되었다고해도 과언이 아닙니다.
 
-In the paper, the group discussed the architecture of the network (which was
-called AlexNet). They used a relatively simple layout, compared to modern
-architectures. The network was made up of 5 conv layers, max-pooling layers,
-dropout layers, and 3 fully connected layers. The network they designed was used
-for classification with 1000 possible categories.
+이 논문에서 그 그룹은 AlexNet 이라고 불리는 망의 구조를 논의했습니다. 그들은
+현대 구조와 비교하면 상대적으로 간단한 배치를 사용했습니다. 망은 5개의
+콘볼루션층, max-pooling 층, droupout 층과 3개의 완전히 연결된 층으로
+구성되었습니다. 망은 1000 개의 범주를 분류하기 위해 설계되었습니다.
 
-![AlexNet pic](/assets/AlexNet.png)
+![AlexNet 그림](/assets/AlexNet.png)
 
-### Main Points
+### 주요 요점
 
-* Trained the network on ImageNet data, which contained over 15 million
-  annotated images from a total of over 22,000 categories.
-* Used ReLU for the nonlinearity functions (Found to decrease training time as
-  ReLUs are several times faster than the conventional tanh function).
-* Used data augmentation techniques that consisted of image translations,
-  horizontal reflections, and patch extractions.
-* Implemented dropout layers in order to combat the problem of overfitting to
-  the training data.
-* Trained the model using batch stochastic gradient descent, with specific
-  values for momentum and weight decay.
-* Trained on two GTX 580 GPUs for **five to six days**.
+* 전체 22,000 개 이상의 분류의 1,500 만개의 이미지를 포함하는 ImageNet 자료로
+  망을 훈련하였습니다.
+* 비선형 함수 ReLU 를 사용했습니다 (ReLU 가 기존 tanh 함수보다 몇배 빨라 훈련
+  시간을 감소시켰습니다).
+* 이미지 변환, 수평 반사, 부분 추출로 구성된 자료 보강 기법이 사용되었습니다.
+* 훈련 자료에 과적합하는 문제에 대처하기 위해 드롭 아웃 층을 구현하였습니다.
+* 가속도와 가중치 감소에 대한 특정 값으로 집단 확률 경사하강법을 사용하여 모델을
+  훈련했습니다.
+* 두개의 GTX 580 GPU 에서 **5-6일간** 훈련되었습니다.
 
-### Why It's Important
+### 중요한 이유
 
-The neural network developed by Krizhevsky, Sutskever, and Hinton in 2012 was
-the coming out party for CNNs in the computer vision community. This was the
-first time a model performed so well on a historically difficult ImageNet
-dataset. Utilizing techniques that are still used today, such as data
-augmentation and dropout, this paper really illustrated the benefits of CNNs and
-backed them up with record breaking performance in the competition.
+2012 년에 Krizhevsky, Sutckever, Hinton 에 의해 개발된 신경망은 컴퓨터 비젼
+공동체에서 CNN 에 대한 발표였습니다. 이것은 역사적으로 어려운 ImageNet 데이터
+세트에 잘 적용되는 첫 모델이었습니다. 자료 보강과 드롭 아웃같은 활용 기법은
+현재에도 여전히 사용됩니다. 이 논문은 CNN 의 장점을 잘 설명하고 경쟁에서 기록을
+깨는 성능으로 그것을 뒷받침합니다.
 
 ## [ZF Net](http://arxiv.org/pdf/1311.2901v3.pdf) (2013)
 
@@ -98,9 +88,9 @@ years ago, this still remains an issue for a lot of researchers! The main
 contributions of this paper are details of a slightly modified AlexNet model and
 a very interesting way of visualizing feature maps.
 
-![ZFNet pic](/assets/zfnet.png)
+![ZFNet 그림](/assets/zfnet.png)
 
-### Main Points
+### 주요 요점
 
 * Very similar architecture to AlexNet, except for a few minor modifications.
 * AlexNet trained on 15 million images, while ZF Net trained on only 1.3 million
@@ -137,7 +127,7 @@ The reasoning behind this whole process is that we want to examine what type of
 structures excite a given feature map. Let's look at the visualizations of the
 first and second layers.
 
-![ZFNet pic 2](/assets/deconvnet.png)
+![ZFNet 그림 2](/assets/deconvnet.png)
 
 Like we discussed in
 [Part 1](https://adeshpande3.github.io/adeshpande3.github.io/A-Beginner's-Guide-To-Understanding-Convolutional-Neural-Networks/),
@@ -156,7 +146,7 @@ turns a 32x32x3 volume into a 16x16x3 volume). The effect this has is that the
 image. For more info on deconvnet or the paper in general, check out Zeiler
 himself [presenting](https://www.youtube.com/watch?v=ghEmQSxT6tw) on the topic.
 
-### Why It's Important
+### 중요한 이유
 
 ZF Net was not only the winner of the competition in 2013, but also provided
 great intuition as to the workings on CNNs and illustrated more ways to improve
@@ -173,9 +163,9 @@ Andrew Zisserman of the University of Oxford created a 19 layer CNN that
 strictly used 3x3 filters with stride and pad of 1, along with 2x2 maxpooling
 layers with stride 2. Simple enough right?
 
-![VGGNet pic](/assets/VGGNet.png)
+![VGGNet 그림](/assets/VGGNet.png)
 
-### Main Points
+### 주요 요점
 
 * The use of only 3x3 sized filters is quite different from AlexNet's 11x11
   filters in the first layer and ZF Net's 7x7 filters. The authors' reasoning is
@@ -200,7 +190,7 @@ layers with stride 2. Simple enough right?
   descent.
 * Trained on 4 Nvidia Titan Black GPUs for **two to three weeks**.
 
-### Why It's Important
+### 중요한 이유
 
 VGG Net is one of the most influential papers in my mind because it reinforced
 the notion that **convolutional neural networks have to have a deep network of
@@ -222,20 +212,20 @@ computational and memory cost, as well as an increased chance of overfitting).
 
 ![GoogleNet](/assets/GoogleNet.gif)
 
-![GoogleNet pic](/assets/GoogLeNet.png)
+![GoogleNet 그림](/assets/GoogLeNet.png)
 
-### Inception Module
+### Inception 모듈
 
 When we first take a look at the structure of GoogLeNet, we notice immediately
 that not everything is happening sequentially, as seen in previous
 architectures. We have pieces of the network that are happening in parallel.
 
-![GoogleNet pic 2](/assets/GoogLeNet2.png)
+![GoogleNet 그림 2](/assets/GoogLeNet2.png)
 
 This box is called an Inception module. Let's take a closer look at what it's
 made of.
 
-![GoogleNet pic 3](/assets/GoogLeNet3.png)
+![GoogleNet 그림 3](/assets/GoogLeNet3.png)
 
 The bottom green box is our input and the top one is the output of the model
 (Turning this picture right 90 degrees would let you visualize the model in
@@ -246,7 +236,7 @@ What an Inception module allows you to do is perform all of these operations in
 parallel. In fact, this was exactly the "na&iuml;ve" idea that the authors came
 up with.
 
-![GoogLeNet pic 4](/assets/GoogLeNet4.png)
+![GoogLeNet 그림 4](/assets/GoogLeNet4.png)
 
 Now, why doesn't this work? It would lead to **way** too many outputs. We would
 end up with an extremely large depth channel for the output volume. The way that
@@ -283,7 +273,7 @@ Sections 3 and 4 of the
 Still not totally clear to me, but if anybody has any insights, I'd love to hear
 them in the comments!).
 
-### Main Points
+### 주요 요점
 
 * Used 9 Inception modules in the whole architecture, with over 100 layers in
   total! Now that is deep...
@@ -299,7 +289,7 @@ them in the comments!).
 * There are updated versions to the Inception module (Versions 6 and 7).
 * Trained on "a few high-end GPUs **within a week**".
 
-### Why It's Important
+### 중요한 이유
 
 GoogLeNet was one of the first models that introduced the idea that CNN layers
 didn't always have to be stacked up sequentially. Coming up with the Inception
@@ -338,13 +328,13 @@ which is a completely new representation that doesn't keep any information about
 the original x). The authors believe that "it is easier to optimize the residual
 mapping than to optimize the original, unreferenced mapping".
 
-![ResNet pic](/assets/ResNet.png)
+![ResNet 그림](/assets/ResNet.png)
 
 Another reason for why this residual block might be effective is that during the
 backward pass of backpropagation, the gradient will flow easily through the
 effective because we have addition operations, which distributes the gradient.
 
-### Main Points
+### 주요 요점
 
 * "Ultra-deep" &ndash; Yann LeCun.
 * 152 layers&hellip;
@@ -357,7 +347,7 @@ effective because we have addition operations, which distributes the gradient.
   presumably due to overfitting.
 * Trained on an 8 GPU machine for **two to three weeks**.
 
-### Why It's Important
+### 중요한 이유
 
 3.6% error rate. That itself should be enough to convince you. The ResNet model
 is the best CNN architecture that we currently have and is a great innovation
@@ -397,7 +387,7 @@ vector is then used as the input to a set of linear SVMs that are trained for
 each class and output a classification. The vector also gets fed into a bounding
 box regressor to obtain the most accurate coordinates.
 
-![RCNN pic](/assets/rcnn.png)
+![RCNN 그림](/assets/rcnn.png)
 
 Non-maxima suppression is then used to suppress bounding boxes that have a
 significant overlap with each other.
@@ -416,7 +406,7 @@ obtained from the last feature map of the ConvNet (check section 2.1 of the
 have our fully connected layers as well as our regression and classification
 heads.
 
-![Fast RCNN pic](/assets/FastRCNN.png)
+![Fast RCNN 그림](/assets/FastRCNN.png)
 
 ### Faster R-CNN
 
@@ -429,7 +419,7 @@ classification and regression heads).
 
 ![Faster RCNN pic](/assets/FasterRCNN.png)
 
-### Why It's Important
+### 중요한 이유
 
 Being able to determine that a specific object is in an image is one thing, but
 being able to determine that object's exact location is a huge jump in knowledge
@@ -448,7 +438,7 @@ the image itself looks the same when compared to the image without the
 perturbation. From the highest level, adversarial examples are basically
 the images that fool ConvNets.
 
-![GAN pic](/assets/Adversarial.png)
+![GAN 그림](/assets/Adversarial.png)
 
 Adversarial examples ([paper](http://arxiv.org/pdf/1312.6199v4.pdf)) definitely
 surprised a lot of researchers and quickly became a topic of interest. Now let's
@@ -466,7 +456,7 @@ discriminator is trying to not get fooled by the generator. As the models train,
 both methods are improved until a point where the "counterfeits are
 indistinguishable from the genuine articles".
 
-### Why It's Important
+### 중요한 이유
 
 Sounds simple enough, but why do we care about these networks? As Yann LeCun
 stated in his Quora
@@ -487,7 +477,7 @@ combination of CNNs and bidirectional RNNs (Recurrent Neural Networks) to
 generate natural language descriptions of different image regions. Basically,
 the model is able to take in an image, and output this:
 
-![Image Description pic](/assets/Caption.png)
+![Image Description 그림](/assets/Caption.png)
 
 That's pretty incredible. Let's look at how this compares to normal CNNs. With
 traditional CNNs, there is a single clear label associated with each image in
@@ -538,9 +528,9 @@ just like CNNs do).
 section, so if anyone has any corrections or other explanations, I'd love to
 hear them in the comments!
 
-![Image Description pic 2](/assets/GeneratingImageDescriptions.png)
+![Image Description 그림 2](/assets/GeneratingImageDescriptions.png)
 
-### Why It's Important
+### 중요한 이유
 
 The interesting idea for me was that of using these seemingly different RNN and
 CNN models to create a very useful application that in a way combines the fields
@@ -581,15 +571,15 @@ consists of:
  with the affine transformation (theta) created in the localization network.
 * A sampler whose purpose is to perform a warping of the input feature map.
 
-![STN pic](/assets/SpatialTransformer.png)
+![STN 그림](/assets/SpatialTransformer.png)
 
 This module can be dropped into a CNN at any point and basically helps the
 network learn how to transform feature maps in a way that minimizes the cost
 function during training.
 
-![STN pic 2](/assets/SpatialTransformer2.png)
+![STN 그림 2](/assets/SpatialTransformer2.png)
 
-### Why It's Important
+### 중요한 이유
 
 This paper caught my eye for the main reason that improvements in CNNs don't
 necessarily have to come from drastic changes in network architecture. We don't
