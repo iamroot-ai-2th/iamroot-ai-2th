@@ -68,47 +68,42 @@ Network" 라는 제목의 논문은 총 6,184 회 인용되고 이 분야에서 
 
 ## [ZF Net](http://arxiv.org/pdf/1311.2901v3.pdf) (2013)
 
-With AlexNet stealing the show in 2012, there was a large increase in the number
-of CNN models submitted to ILSVRC 2013. The winner of the competition that year
-was a network built by Matthew Zeiler and Rob Fergus from NYU. Named ZF Net,
-this model achieved an 11.2% error rate. This architecture was more of a fine
-tuning to the previous AlexNet structure, but still developed some very keys
-ideas about improving performance. Another reason this was such a great paper is
-that the authors spent a good amount of time explaining a lot of the intuition
-behind ConvNets and showing how to visualize the filters and weights correctly.
+2012 년의 AlexNet 이 인기를 독차지 한 것에 힘입어, ILSVRC 2013 에 제출된 CNN
+모델의 수가 급증하였습니다. 그 해 승자는 뉴욕대의 Matthew Zeiler 와 Rob Fergus
+에 의해 만들어진 망이었습니다. ZF Net 이라는 이 모델은 11.2% 의 오류율을
+달성하였습니다. 이 구조는 이전 AlexNet 구조를 약간 조정하였습니다. 그러나, 성능
+개선에 대한 몇몇 핵심 발상이 개발되었습니다. 이것이 훌륭한 논문이라는 다른
+이유는 저자들이 ConvNets 에 숨은 많은 직관을 설명하고 필터와 가중치를 어떻게
+올바르게 시각화하는지 보여주는데 많은 시간을 보낸 것 입니다.
 
-In this paper titled "Visualizing and Understanding Convolutional Neural
-Networks", Zeiler and Fergus begin by discussing the idea that this renewed
-interest in CNNs is due to the accessibility of large training sets and
-increased computational power with the usage of GPUs. They also talk about the
-limited knowledge that researchers had on inner mechanisms of these models,
-saying that without this insight, the "development of better models is reduced
-to trial and error". While we do currently have a better understanding than 3
-years ago, this still remains an issue for a lot of researchers! The main
-contributions of this paper are details of a slightly modified AlexNet model and
-a very interesting way of visualizing feature maps.
+"Visualizing and Understanding Convolutional Neural Networks" 라는 이름의
+논문에서, Zeiler 와 Fergus 는 CNN 의 새로운 관심은 대용량 훈련 세트의 접근성과
+GPU 사용으로 증가된 연산 능력에 기인한다는 생각을 논의함으로써 시작하였습니다.
+그들은 또한 연구자들이 이 모델의 내부 방법에서 경험한, 이 이해없이 "더 나은
+모델의 개발은 시행착오로 몰아넣습니다" 라고 말하는, 제한된 지식에 대해
+말하였습니다. 현재 3년전보다 더 나은 이해를 하지만, 많은 연구자에게 문제로
+남아있습니다. 이 논문의 주요 기여는 조금 수정된 AlexNet 모델의 세부사항과 특징
+지도를 시각화하는 매우 흥미로운 방법입니다.
 
 ![ZFNet 그림](/assets/zfnet.png)
 
 ### 주요 요점
 
-* Very similar architecture to AlexNet, except for a few minor modifications.
-* AlexNet trained on 15 million images, while ZF Net trained on only 1.3 million
-  images.
-* Instead of using 11x11 sized filters in the first layer (which is what AlexNet
-  implemented), ZF Net used filters of size 7x7 and a decreased stride value.
-  The reasoning behind this modification is that a smaller filter size in the
-  first conv layer helps retain a lot of original pixel information in the input
-  volume. A filtering of size 11x11 proved to be skipping a lot of relevant
-  information, especially as this is the first conv layer.
-* As the network grows, we also see a rise in the number of filters used.
-* Used ReLUs for their activation functions, cross-entropy loss for the error
-  function, and trained using batch stochastic gradient descent.
-* Trained on a GTX 580 GPU for **twelve days**.
-* Developed a visualization technique named Deconvolutional Network, which helps
-  to examine different feature activations and their relation to the input
-  space. Called "deconvnet" because it maps features to pixels (the opposite of
-  what a convolutional layer does).
+* 몇가지 사소한 수정을 제외하면 AlexNet 과 매우 유사한 구조입니다.
+* ZF Net 은 단지 130 만 이미지로 훈련된데반해, AlexNet 은 1,500 만 이미지로
+  훈련되었습니다.
+* 첫 층에 (AlexNet 이 사용한) 11x11 크기 필터를 사용하는 대신에, ZF Net 은 7x7
+  크기의 필터를 사용하였고 이동 값을 줄였습니다. 이 변경의 배경는 첫 콘볼루션
+  층의 작은 필터 크기가 입력 볼륨의 많은 원 화소 정보를 획득하는데 도움을 준다는
+  것 입니다. 특히 첫 콘볼루션 층에서, 11x11 크기의 필터링이 많은 적절한 정보를
+  생략하는 것이 증명되었습니다.
+* 망이 성장함에 따라 사용된 필터의 수도 증가하였습니다.
+* 활성화 함수에는 ReLU를 오류 함수에는 크로스엔트로피 손실을 사용하였고, 집단
+  확률 경사하강법으로 훈련되었습니다.
+* GTX 580 GPU 에서 **12일**간 훈련되었습니다.
+* 디콘볼루션 망이라는 이름의 시각화 기술이 개발되었습니다. 이것은 특징 활성화와
+  연관된 입력 공간의 다른점을 검사하는데 도움을 줍니다. 특징을 화소로 연관시키기
+  때문에 "deconvnet" 이라 부릅니다 (콘볼루션 층이 하는 것의 반대).
 
 ## DeConvNet
 
