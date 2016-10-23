@@ -146,45 +146,39 @@ ZF Net 은 2013 년의 경쟁의 승자일 뿐만 아니라, CNN 에서의 동�
 
 ## [VGG Net](http://arxiv.org/pdf/1409.1556v6.pdf) (2014)
 
-Simplicity and depth. That's what a model created in 2014 (weren't the winners
-of ILSVRC 2014) best utilized with its 7.3% error rate. Karen Simonyan and
-Andrew Zisserman of the University of Oxford created a 19 layer CNN that
-strictly used 3x3 filters with stride and pad of 1, along with 2x2 maxpooling
-layers with stride 2. Simple enough right?
+단순하고 깊게. 이것은 2014 년에 만들어지고 오류율이 7.3% 인 가장 잘 활용한
+모델입니다. 옥스포드 대학의 Karen Simonyan 과 Andrew Zisserman 이 19 층의 CNN 을
+만들었습니다. 스트라이드와 패드가 1 인 3x3 필터와, 스트라이드가 2 인 2x2 최대
+풀링을 엄격하게 사용하였습니다. 충분히 간단하죠?
 
 ![VGGNet 그림](/assets/VGGNet.png)
 
 ### 주요 요점
 
-* The use of only 3x3 sized filters is quite different from AlexNet's 11x11
-  filters in the first layer and ZF Net's 7x7 filters. The authors' reasoning is
-  that the combination of two 3x3 conv layers has an effective receptive field
-  of 5x5. This in turn simulates a larger filter while keeping the benefits of
-  smaller filter sizes. One of the benefits is a decrease in the number of
-  parameters. Also, with two conv layers, we're able to use two ReLU layers
-  instead of one.
-* 3 conv layers back to back have an effective receptive field of 7x7.
-* As the spatial size of the input volumes at each layer decrease (result of the
-  conv and pool layers), the depth of the volumes increase due to the increased
-  number of filters as you go down the network.
-* Interesting to notice that the number of filters doubles after each maxpool
-  layer. This reinforces the idea of shrinking spatial dimensions, but growing
-  depth.
-* Worked well on both image classification and localization tasks. The authors
-  used a form of localization as regression (see page 10 of the
-  [paper](http://arxiv.org/pdf/1409.1556v6.pdf) for all details).
-* Built model with the Caffe toolbox.
-* Used scale jittering as one data augmentation technique during training.
-* Used ReLU layers after each conv layer and trained with batch gradient
-  descent.
-* Trained on 4 Nvidia Titan Black GPUs for **two to three weeks**.
+* 첫번째 층에서 3x3 크기의 필터만 사용한 것은 AlexNet 의 11x11 필터 및 ZF Net 의
+  7x7 필터와 상당히 다릅니다. 저자의 논리는 두개의 3x3 콘볼루션 층의 조합은
+  효과적으로 받아들이는 5x5 의 영역을 가지고 있다는 것 입니다. 이것은 작은 필터
+  크기의 장점을 유지하면서 큰 필터를 시뮬레이션합니다. 장점 중 하나는 매개변수의
+  개수가 감소하는 것 입니다. 또한, 2 개의 콘볼루션 층을 사용하면, 2 개의
+  ReLU 층을 사용할 수 있습니다.
+* 3 개의 콘볼루션 층은 7x7 과 같은 효과를 냅니다.
+* 각 층에서 입력 볼륨의 공간 크기 감소로 (콘볼루션과 풀 층의 결과), 증가된 필터
+  개수에 따라 볼륨의 깊이가 증가합니다.
+* 흥미로운 점은 각 최대 풀 층 이후 필터의 수가 두배가 됩니다. 이것은 공간 차원
+  축소 발상을 강화하지만, 깊이를 증가시킵니다.
+* 이미지 분류와 로컬라이제이션 작업 모두 잘 동작합니다. 저자는 회귀방법으로
+  로컬라이제이션의 형식을 사용하였습니다 (모든 자세한 정보는
+  [논문](http://arxiv.org/pdf/1409.1556v6.pdf)의 10 쪽을 보세요).
+* Caffe 툴박스로 만들어진 모델입니다.
+* 훈련기간동안 하나의 자료 보강 기법으로 스케일 지터링을 사용하였습니다.
+* 각 콘볼루션 층 다음에 ReLU 층을 사용하였고 경사 하강으로 훈련되었습니다.
+* 4 개의 Nvidia Titan Black GPU 에서 **2 ~ 3 주**동안 훈련되었습니다.
 
 ### 중요한 이유
 
-VGG Net is one of the most influential papers in my mind because it reinforced
-the notion that **convolutional neural networks have to have a deep network of
-layers in order for this hierarchical representation of visual data to work**.
-Keep it deep. Keep it simple.
+VGG Net 은 다음 개념을 보강하였기 때문에 나에게 많은 영향을 준 논문중
+하나입니다. **콘볼루션 신경망이 시각 자료의 계층적 표현에 대해 동작하려면 층의
+깊은 망을 가지고 있어야 합니다.** 깊게. 간단하게.
 
 ## [GoogLeNet](http://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Szegedy_Going_Deeper_With_2015_CVPR_paper.pdf) (2015)
 
