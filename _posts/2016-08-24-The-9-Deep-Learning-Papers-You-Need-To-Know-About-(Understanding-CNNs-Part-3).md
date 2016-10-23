@@ -107,48 +107,42 @@ GPU 사용으로 증가된 연산 능력에 기인한다는 생각을 논의함�
 
 ## DeConvNet
 
-The basic idea behind how this works is that at every layer of the trained CNN,
-you attach a "deconvnet" which has a path back to the image pixels. An input
-image is fed into the CNN and activations are computed at each level. This is
-the forward pass. Now, let's say we want to examine the activations of a certain
-feature in the 4<sup>th</sup> conv layer. We would store the activations of this
-one feature map, but set all of the other activations in the layer to 0, and
-then pass this feature map as the input into the deconvnet. This deconvnet has
-the same filters as the original CNN. This input then goes through a series of
-unpool (reverse maxpooling), rectify, and filter operations for each preceding
-layer until the input space is reached.
+훈련된 CNN 의 모든 층에서 이 작업을 수행하는 방법의 기본 개념은, 이미지 화소로
+돌아가는 경로를 가지고 있는 "deconvnet" 을 붙이는 것 입니다. 입력 이미지가
+CNN 에 주어지고 각 단계에서 활성화가 계산됩니다. 이것은 순방향 전달입니다. 이제,
+네번째 콘볼루션층에서 구체적인 특징의 활성화를 검사한다고 가정해봅시다. 하나의
+특징 지도의 활성화를 저장합니다. 그러나 이 층의 다른 활성화는 모두 0 으로
+설정합니다. 그리고 이 특징 지도를 deconvnet 에 입력으로 전달합니다. 이
+deconvnet 은 원 CNN 과 같은 필터를 가지고 있습니다. 이 입력은 입력 공간에 도달할
+때 까지 선행층에 대한 역풀 (최대 풀링의 반대), 바로잡기, 필터 명령을 거칩니다.
 
-The reasoning behind this whole process is that we want to examine what type of
-structures excite a given feature map. Let's look at the visualizations of the
-first and second layers.
+이 모든 과정의 이유는 구조의 어떤 유형이 주어진 특징 지도를 활성화시키는지
+검사하려는 것 입니다. 처음 두개 층을 시각적으로 살펴봅시다.
 
 ![ZFNet 그림 2](/assets/deconvnet.png)
 
-Like we discussed in
-[Part 1](https://adeshpande3.github.io/adeshpande3.github.io/A-Beginner's-Guide-To-Understanding-Convolutional-Neural-Networks/),
-the first layer of your ConvNet is always a low level feature detector that will
-detect simple edges or colors in this particular case. We can see that with the
-second layer, we have more circular features that are being detected. Let's look
-at layers 3, 4, and 5.
+[1부](https://adeshpande3.github.io/adeshpande3.github.io/A-Beginner's-Guide-To-Understanding-Convolutional-Neural-Networks/)
+에서 논의 한 것 처럼, ConvNet 의 첫번째 층은 항상 저수준 특징을 찾아낼 것
+입니다. 특별한 경우에 간단한 모서리나 색을 찾아낼 것 입니다. 두번쨰 층에서는
+검출된 좀 더 반복적인특징을 볼 수 있습니다. 이제 3, 4, 5 층을 봅시다.
 
-![ZFNet pic 3](/assets/deconvnet2.png)
+![ZFNet 그림 3](/assets/deconvnet2.png)
 
-These layers show a lot more of the higher level features such as dogs' faces or
-flowers. One thing to note is that as you may remember, after the first conv
-layer, we normally have a pooling layer that downsamples the image (for example,
-turns a 32x32x3 volume into a 16x16x3 volume). The effect this has is that the
-2<sup>nd</sup> layer has a broader scope of what it can see in the original
-image. For more info on deconvnet or the paper in general, check out Zeiler
-himself [presenting](https://www.youtube.com/watch?v=ghEmQSxT6tw) on the topic.
+이 층들은 대의 얼굴이나 꽃 같은 고수준 특징을 더 많이 보여줍니다. 기억해야
+할만한 한가지 참고사항은, 첫번째 층 이후, 일반적으로 이미지를 다운샘플링하는
+풀링층을 가지고 있는 것 입니다. (예를 들어, 32x32x3 부피를 16x16x3 부피로
+바꿉니다). 이것이 가지는 효과는 두번째 층이 원본 이미지에서 볼 수있는 폭
+넓은 범위를 가지고 있는 것 입니다. deconvnet 이나 일반적인 논문에 대한 자세한
+정보는, 주제에 관한 Zeiler 자신의
+[발표](https://www.youtube.com/watch?v=ghEmQSxT6tw)를 확인하세요.
 
 ### 중요한 이유
 
-ZF Net was not only the winner of the competition in 2013, but also provided
-great intuition as to the workings on CNNs and illustrated more ways to improve
-performance. The visualization approach described helps not only to explain the
-inner workings of CNNs, but also provides insight for improvements to network
-architectures. The fascinating deconv visualization approach and occlusion
-experiments make this one of my personal favorite papers.
+ZF Net 은 2013 년의 경쟁의 승자일 뿐만 아니라, CNN 에서의 동작에 대한 훌륭한
+직관을 제공하고 성능을 향상하기 위한 다양한 방법을 보여줬습니다. 설명된 시각화
+접근법은 CNN 의 내부동작을 설명하는 것 뿐만 아니라, 망 구조 개선에 대한 통찰력을
+제공하는데 도움을 줍니다. 흥미로운 deconv 시각화 접근법과 이에 대한 실험은
+개인적으로 좋아하는 논문 중 하나입니다.
 
 ## [VGG Net](http://arxiv.org/pdf/1409.1556v6.pdf) (2014)
 
