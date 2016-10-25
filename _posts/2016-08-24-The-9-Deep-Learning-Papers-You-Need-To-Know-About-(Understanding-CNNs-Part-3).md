@@ -182,62 +182,53 @@ VGG Net 은 다음 개념을 보강하였기 때문에 나에게 많은 영향�
 
 ## [GoogLeNet](http://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Szegedy_Going_Deeper_With_2015_CVPR_paper.pdf) (2015)
 
-You know that idea of simplicity in network architecture that we just talked
-about? Well, Google kind of threw that out the window with the introduction of
-the Inception module. GoogLeNet is a 22 layer CNN and was the winner of ILSVRC
-2014 with a top 5 error rate of 6.7%. To my knowledge, this was one of the first
-CNN architectures that really strayed from the general approach of simply
-stacking conv and pooling layers on top of each other in a sequential structure.
-The authors of the paper also emphasized that this new model places notable
-consideration on memory and power usage (Important note that I sometimes forget
-too: Stacking all of these layers and adding huge numbers of filters has a
-computational and memory cost, as well as an increased chance of overfitting).
+우리가 얘기하는 망 설계에서 단순성의 개념을 알고있나요? 구글은 인셉션 모델의
+소개와 함께 그것을 보여주었습니다. GoogLeNet 은 22 층의 CNN 이고 상위 5가지
+오류율이 6.7% 로 ILSVRC 2014 의 우승자입니다. 제가 알기로, 이것은 순차적
+구조에서 서로의 상단에 콘볼루션과 풀링 층을 쌓는 일반적인 접근에서 벗어난 첫 CNN
+구조중 하나입니다. 논문의 저자는 이 새로운 모델은 메모리와 전력 사용에 있어
+중요한 고려 사항이 있다고 강조합니다. (가끔 잊어버리는 중요한 참고: 이모든 층을
+쌓고 많은 필터를 추가하는 것은 연산과 메모리 비용뿐만 아니라 과적합 될 가능성이
+높아집니다).
 
 ![GoogleNet](/assets/GoogleNet.gif)
 
 ![GoogleNet 그림](/assets/GoogLeNet.png)
 
-### Inception 모듈
+### 인셉션 모듈
 
-When we first take a look at the structure of GoogLeNet, we notice immediately
-that not everything is happening sequentially, as seen in previous
-architectures. We have pieces of the network that are happening in parallel.
+처음 GoogLeNet 의 구조를 접했을 때, 이전 구조에서 본 것 처럼 모두 순차적으로
+진행되지 않는 것을 즉시 알아차릴 것입니다. 병렬로 진행되는 망의 조각이 있습니다.
 
 ![GoogleNet 그림 2](/assets/GoogLeNet2.png)
 
-This box is called an Inception module. Let's take a closer look at what it's
-made of.
+이 상자는 인셉션 모듈이라 불립니다. 어떻게 구성되어 있는지 자세히 봅시다.
 
 ![GoogleNet 그림 3](/assets/GoogLeNet3.png)
 
-The bottom green box is our input and the top one is the output of the model
-(Turning this picture right 90 degrees would let you visualize the model in
-relation to the last picture which shows the full network). Basically, at each
-layer of a traditional ConvNet, you have to make a choice of whether to have a
-pooling operation or a conv operation (there is also the choice of filter size).
-What an Inception module allows you to do is perform all of these operations in
-parallel. In fact, this was exactly the "na&iuml;ve" idea that the authors came
-up with.
+아래 초록 상자는 우리의 입력이며 위의 것은 모델의 출력입니다 (이 사진을
+오른쪽으로 90도 돌리면 전체 망을 보여주는 마지막 그림과 관계하여 모델을 그려볼
+수 있습니다). 기본적으로, 전통적인 ConvNet 의 각 층에서, 풀링 연산을 할지
+콘볼루션 연산을 할지 여부를 선택해야 합니다 (필터 크기의 선택도 있습니다).
+인셉션 모듈은 이러한 연산을 모두 병렬로 수행할 수 있게 해줍니다. 사실, 이것은
+저자가 찾아낸 정확히 "na&iuml;ve" 한 생각입니다.
 
 ![GoogLeNet 그림 4](/assets/GoogLeNet4.png)
 
-Now, why doesn't this work? It would lead to **way** too many outputs. We would
-end up with an extremely large depth channel for the output volume. The way that
-the authors address this is by adding 1x1 conv operations before the 3x3 and 5x5
-layers. The 1x1 convolutions (or network in network layer) provide a method of
-dimensionality reduction. For example, let's say you had an input volume of
-100x100x60 (This isn't necessarily the dimensions of the image, just the input
-to any layer of the network). Applying 20 filters of 1x1 convolution would allow
-you to reduce the volume to 100x100x20. This means that the 3x3 and 5x5
-convolutions won't have as large of a volume to deal with. This can be thought
-of as a "pooling of features" because we are reducing the depth of the volume,
-similar to how we reduce the dimensions of height and width with normal
-maxpooling layers. Another note is that these 1x1 conv layers are followed by
-ReLU units which definitely can't hurt (See Aaditya Prakash's
-[great post](http://iamaaditya.github.io/2016/03/one-by-one-convolution/) for
-more info on the effectiveness of 1x1 convolutions). Check out this
-[video](https://www.youtube.com/watch?v=VxhSouuSZDY) for a great visualization
-of the filter concatenation at the end.
+자, 이것이 왜 작동하지 않을까요? 그것은 너무 많은 출력으로 **이어질** 것 입니다.
+우리는 출력 볼륨에 대한 매우 크고 깊은 채널로 끝날 것 입니다. 저자가 이 문제를
+해결한 방법은 3x3 과 5x5 층 전에 1x1 콘볼루션 연산을 추가하는 것입니다. 1x1
+콘볼루션 (또는 망 층의 망) 은 차원 축소하는 방법을 제공합니다. 예를 들어,
+100x100x60 의 입력 볼륨이 있다고 가정합시다 (이미지의 면적은 중요하지 않습니다.
+단지 망의 아무 층의 입력일 뿐 입니다). 1x1 콘볼루션 필터 20 개를 적용하면 볼륨을
+100x100x20 으로 줄일 수 있습니다. 이것은 3x3 과 5x5 콘볼루션이 처리해야할 볼륨이
+크지 않다는 의미입니다. 볼륨의 깊이를 줄였기때문에, 이것은 "특징의 풀링"으로
+생각될 수 있습니다. 보통 최대 풀링 층으로 높이와 가로폭의 차원을 줄인 방법과
+유사합니다. 다른 참고사항은 다음에 ReLU 유닛이 오는 이 1x1 콘볼루션 층은 절대
+다칠 수 없습니다. (1x1 콘볼루션의 효과상에 대한 자세한 정보는 Aaditya Prakash 의
+[훌륭한 글](http://iamaaditya.github.io/2016/03/one-by-one-convolution/)을
+보세요). 끝에 연결된 필터의 훌륭한 시각화에 대한 이
+[영상](https://www.youtube.com/watch?v=VxhSouuSZDY)을 확인하세요.
 
 You may be asking yourself "How does this architecture help?". Well, you have a
 module that consists of a network in network layer, a medium sized filter
